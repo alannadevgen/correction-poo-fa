@@ -25,22 +25,7 @@ class Point:
         str
             description du point
         """
-        return "({}, {})".format(self.__x, self.__y)
-
-    def __eq__(self, autre_point):
-        """Teste l'égalité de deux points
-
-        Parameters
-        ----------
-        autre_point : Point
-            l'autre point à tester
-
-        Returns
-        -------
-        bool
-            True si et seulement si les coordonnées correspondent
-        """
-        return self.__x == autre_point.__x and self.__y == autre_point.__y
+        return f"({self.__x}, {self.__y})"
 
     @property
     def x(self):
@@ -85,6 +70,51 @@ class Point:
             angle avec l'axe des abscisses
         """
         return atan2(self.__y, self.__x)
+
+    def __eq__(self, other):
+        """Teste l'égalité de deux points
+
+        Parameters
+        ----------
+        other : Point
+            Autre point à tester
+
+        Returns
+        -------
+        bool
+            True si et seulement si les coordonnées correspondent
+        """
+        return self.__x == other.__x and self.__y == other.__y
+
+    def __add__(self, other):
+        """Additionne deux points
+
+        Parameters
+        ----------
+        other : Point
+            Autre point à ajouter
+
+        Returns
+        -------
+        Point
+            Nouveau point résultant de l'addition
+        """
+        return Point(self.__x + other.__x, self.__y + other.__y)
+
+    def __sub__(self, other):
+        """Soustrait deux points
+
+        Parameters
+        ----------
+        other : Point
+            Autre point à soustraire
+
+        Returns
+        -------
+        Point
+            Nouveau point résultant de la soustraction
+        """
+        return Point(self.__x - other.__x, self.__y - other.__y)
 
     def homothety(self, k):
         """Applique un homothétie au point
